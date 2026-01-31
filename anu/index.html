@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anurag Verma | AI, Web Dev & Ventures</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Anurag<span>.AI</span></div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#services">Services</a>
+            <a href="#ventures">Interests</a>
+            <a href="#contact">Contact</a>
+            <button id="theme-toggle"
+                style="background:none; border:none; cursor:pointer; font-size:1.2rem; color:var(--text-primary); padding: 0.5rem;"><i
+                    class="fas fa-moon"></i></button>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content">
+            <h4
+                style="color: var(--text-secondary); margin-bottom: 1rem; letter-spacing: 2px; text-transform: uppercase;">
+                Hello, I'm Anurag Verma</h4>
+            <h1>Building Next-Gen <br> <span class="highlight-blue">Tech</span> & <span
+                    class="highlight-gold">Ventures</span></h1>
+            <div class="typing-text"></div>
+            <div class="cta-group">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#services" class="btn btn-secondary">Hire Me</a>
+            </div>
+        </div>
+    </section>
+    <!-- About & Interests -->
+    <section id="about" class="reveal">
+        <div class="about-grid">
+            <div class="about-card">
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <img src="resources/profile.JPG" alt="Anurag Verma" class="profile-avatar">
+                </div>
+                <h3 class="section-title">Who Am I?</h3>
+                <div class="about-text">
+                    <p>I am a first-year <strong>B.Tech CSE (AI)</strong> student at Parul Institute of Engineering &
+                        Technology. My passion lies at the intersection of Artificial Intelligence, Automation, and Web
+                        Development.</p>
+                    <p>Beyond code, I am an aspiring entrepreneur open to startup collaborations and building scalable
+                        systems.</p>
+                </div>
+            </div>
+            <div class="interest-card" id="ventures">
+                <h3 class="section-title" style="color: var(--accent-gold); text-align: center;">Open To Opportunities
+                </h3>
+                <p style="color: var(--text-secondary); text-align: center;">Looking to collaborate on high-growth
+                    ventures.</p>
+                <div class="interest-tags" style="justify-content: center;">
+                    <span class="tag"><i class="fas fa-rocket"></i> Early-stage Startups</span>
+                    <span class="tag"><i class="fas fa-chart-line"></i> Business Growth</span>
+                    <span class="tag"><i class="fas fa-handshake"></i> Partnerships</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Skills -->
+    <section id="skills" class="reveal">
+        <div class="section-header">
+            <h2 class="section-title">Technical Arsenal</h2>
+            <p class="section-subtitle">Tools and technologies I use to build digital products.</p>
+        </div>
+        <div class="skills-wrapper">
+            <div class="skill-pill"><i class="fab fa-html5" style="color:#e34c26"></i> HTML5</div>
+            <div class="skill-pill"><i class="fab fa-css3-alt" style="color:#264de4"></i> CSS3</div>
+            <div class="skill-pill"><i class="fab fa-js" style="color:#f0db4f"></i> JavaScript</div>
+            <div class="skill-pill"><i class="fas fa-code" style="color:#00599C"></i> C++</div>
+            <div class="skill-pill"><i class="fas fa-c" style="color:#A8B9CC"></i> C Language</div>
+            <div class="skill-pill"><i class="fab fa-git-alt" style="color:#F05032"></i> Git</div>
+            <div class="skill-pill"><i class="fab fa-github"></i> GitHub</div>
+            <div class="skill-pill"><i class="fas fa-brain" style="color:var(--accent-purple)"></i> AI Concepts</div>
+        </div>
+    </section>
+    <!-- Projects -->
+    <section id="projects" class="reveal">
+        <div class="section-header">
+            <h2 class="section-title">Selected Projects</h2>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span>HTML</span> <span>CSS</span> <span>JS</span>
+                    </div>
+                    <h3 class="project-title">Amazon Clone</h3>
+                    <p class="project-desc">A responsive replica of the Amazon e-commerce interface, featuring product
+                        grids and modern layout techniques.</p>
+                    <a href="https://v0-amazon-clone-web.vercel.app/" target="_blank" class="btn-secondary"
+                        style="padding: 0.5rem 1rem; font-size: 0.8rem;">View Demo</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span>UI/UX</span> <span>Frontend</span>
+                    </div>
+                    <h3 class="project-title">Netflix Clone</h3>
+                    <p class="project-desc">A visually rich streaming platform interface with dark mode aesthetics and
+                        smooth hover interactions.</p>
+                    <a href="https://netflix-clone-isjv6r7ml-anuragverma7276-5191s-projects.vercel.app" target="_blank"
+                        class="btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.8rem;">View Demo</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span>Web Design</span> <span>Business</span>
+                    </div>
+                    <h3 class="project-title">Client Portfolios</h3>
+                    <p class="project-desc">Custom-built portfolio websites designed for professionals to showcase their
+                        work and attract clients.</p>
+                    <a href="#" class="btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.8rem;">View Samples</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services & Pricing (IMPORTANT) -->
+    <section id="services" class="reveal">
+        <div class="section-header">
+            <h2 class="section-title">Services & Pricing</h2>
+            <p class="section-subtitle">Professional web development packages tailored for students, job seekers, and
+                founders.</p>
+        </div>
+        <div class="pricing-grid">
+            <!-- Basic -->
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3 class="highlight-blue">Basic Portfolio</h3>
+                    <div class="price-tag">₹699</div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Perfect for Students & Freshers</p>
+                </div>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> 1-2 Pages (Home + Contact)</li>
+                    <li><i class="fas fa-check"></i> Clean Dark Theme</li>
+                    <li><i class="fas fa-check"></i> Mobile Responsive</li>
+                    <li><i class="fas fa-check"></i> Basic Animations</li>
+                    <li><i class="fas fa-clock"></i> 2-3 Days Delivery</li>
+                </ul>
+                <a href="#contact" class="btn btn-secondary" style="width: 100%; display: block;">Choose Basic</a>
+            </div>
+            <!-- Standard (Featured) -->
+            <div class="pricing-card featured">
+                <div class="pricing-header">
+                    <h3 class="highlight-gold"><i class="fas fa-crown"></i> Standard</h3>
+                    <div class="price-tag">₹1,499</div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">For Professionals & Job Seekers</p>
+                </div>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> 4-5 Custom Pages</li>
+                    <li><i class="fas fa-check"></i> Smooth Animations</li>
+                    <li><i class="fas fa-check"></i> Projects Showcase</li>
+                    <li><i class="fas fa-check"></i> Social Media Integration</li>
+                    <li><i class="fas fa-check"></i> WhatsApp Direct Link</li>
+                    <li><i class="fas fa-clock"></i> 3-5 Days Delivery</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary" style="width: 100%; display: block;">Choose Standard</a>
+            </div>
+            <!-- Premium -->
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3 class="highlight-purple">Premium</h3>
+                    <div class="price-tag">₹2,999</div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">For Startups & Founders</p>
+                </div>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> Fully Custom Design</li>
+                    <li><i class="fas fa-check"></i> Advanced Effects</li>
+                    <li><i class="fas fa-check"></i> Login/Signup UI Demo</li>
+                    <li><i class="fas fa-check"></i> Startup-Friendly Layout</li>
+                    <li><i class="fas fa-check"></i> Basic SEO + Deployment</li>
+                    <li><i class="fas fa-clock"></i> 5-7 Days Delivery</li>
+                </ul>
+                <a href="#contact" class="btn btn-secondary" style="width: 100%; display: block;">Choose Premium</a>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem; color: var(--text-secondary);">
+            <p><small>Add-ons available: Extra pages (₹300), Custom animations (₹500), Content writing (₹300)</small>
+            </p>
+        </div>
+    </section>
+    <!-- Contact -->
+    <section id="contact" class="reveal">
+        <div class="section-header">
+            <h2 class="section-title">Let's Build Something</h2>
+            <p class="section-subtitle">Ready to start? Reach out via Email or WhatsApp.</p>
+        </div>
+        <div class="contact-actions">
+            <a href="mailto:anuragverma7276@gmail.com" class="contact-btn email">
+                <i class="fas fa-envelope"></i> Email Me
+            </a>
+            <a href="https://wa.me/917054694177" class="contact-btn whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp Me
+            </a>
+        </div>
+        <form style="max-width: 600px; margin: 3rem auto; display: flex; flex-direction: column; gap: 1rem;">
+            <input type="text" placeholder="Your Name"
+                style="padding: 1rem; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3); color: white;">
+            <input type="email" placeholder="Your Email"
+                style="padding: 1rem; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3); color: white;">
+            <textarea rows="4" placeholder="How can I help you?"
+                style="padding: 1rem; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3); color: white;"></textarea>
+            <button class="btn btn-primary">Send Message</button>
+        </form>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="social-icons">
+            <a href="https://github.com/Anu7276" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/anurag-verma4" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/anuragverma7276/" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2026 Anurag Verma. All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
