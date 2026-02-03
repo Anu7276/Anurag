@@ -101,7 +101,8 @@ function initParticles() {
     for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
     }
-    // Animation Loop
+    // Animation Loop with Visibility Check
+    let animationId;
     function animate() {
         ctx.clearRect(0, 0, width, height);
         for (let i = 0; i < particles.length; i++) {
@@ -124,35 +125,102 @@ function initParticles() {
                 }
             }
         }
-        requestAnimationFrame(animate);
+        animationId = requestAnimationFrame(animate);
     }
-    animate();
+
+    // Optimization: Pause animation when not in viewport
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (!animationId) animate();
+            } else {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+        });
+    });
+    observer.observe(canvas);
 }
 document.addEventListener('DOMContentLoaded', () => {
     typeEffect();
     revealOnScroll();
     initParticles();
 });
-/* Scroll Reveal */
+/* Scroll Reveal (IntersectionObserver for better performance) */
 function revealOnScroll() {
     const reveals = document.querySelectorAll('.reveal');
-    const windowHeight = window.innerHeight;
-    const elementVisible = 150;
-    reveals.forEach((reveal) => {
-        const elementTop = reveal.getBoundingClientRect().top;
-        if (elementTop < windowHeight - elementVisible) {
-            reveal.classList.add('active');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Optional: Stop observing once revealed if you don't want it to toggle
+                // observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15, // Trigger when 15% visible
+        rootMargin: "0px 0px -50px 0px" // Offset slightly
+    });
+
+    reveals.forEach((reveal) => observer.observe(reveal));
+}
+/* Contact Form Submission (n8n) */
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+
+        // DATA: Capture form values
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value,
+            timestamp: new Date().toISOString()
+        };
+
+        // CONFIG: Replace this URL with your actual n8n Webhook URL
+        const n8nWebhookUrl = 'https://anuragver.app.n8n.cloud/webhook/portfolio-contact';
+
+        try {
+            // Add timeout to fetch
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+
+            const response = await fetch(n8nWebhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData),
+                signal: controller.signal
+            });
+
+            clearTimeout(timeoutId);
+
+            if (response.ok) {
+                alert('Message sent successfully!');
+                contactForm.reset();
+            } else {
+                throw new Error('Network response was not ok');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            if (error.name === 'AbortError') {
+                alert('Request timed out. Please try again.');
+            } else {
+                alert('Failed to send message: ' + error.message);
+            }
+        } finally {
+            submitBtn.textContent = originalBtnText;
+            submitBtn.disabled = false;
         }
     });
 }
-window.addEventListener('scroll', revealOnScroll);
-/* Contact Form Placeholder */
-const buttons = document.querySelectorAll('.btn-primary');
-buttons.forEach(btn => {
-    btn.addEventListener('click', function (e) {
-        // Simple feedback
-    });
-});
 /* Theme Toggle */
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
