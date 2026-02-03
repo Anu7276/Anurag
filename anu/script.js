@@ -179,8 +179,7 @@ if (contactForm) {
         const formData = {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
-            message: document.getElementById('message').value,
-            timestamp: new Date().toISOString()
+            message: document.getElementById('message').value
         };
 
         // CONFIG: Replace this URL with your actual n8n Webhook URL
