@@ -1,22 +1,19 @@
 :root {
-    --bg-color: #050505;
-    --section-bg: #0a0a0a;
-    --card-bg: rgba(20, 20, 20, 0.6);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
-    --accent-gold: #ffd700;
-    /* For Business/Startup flair */
-    --accent-blue: #00f3ff;
-    /* For Tech flair */
-    --accent-purple: #bc13fe;
-    --nav-bg: rgba(5, 5, 5, 0.85);
+    --bg-color: #080810;
+    --section-bg: #0c0c14;
+    --card-bg: rgba(25, 25, 35, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --text-primary: #f8f9fa;
+    --text-secondary: #94a3b8;
+    --accent-gold: #fbbf24;
+    --accent-blue: #00d1ff;
+    --accent-purple: #a855f7;
+    --nav-bg: rgba(8, 8, 16, 0.8);
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
-    --transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    /* Snappier feel */
-    /* Dynamic Background opacity for dark mode */
-    --bg-overlay-opacity: 0.15;
+    --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --bg-overlay-opacity: 0.12;
 }
 /* Light Theme Variables */
 [data-theme="light"] {
@@ -43,10 +40,26 @@ body {
     background-color: var(--bg-color);
     color: var(--text-primary);
     font-family: var(--font-body);
-    line-height: 1.6;
+    line-height: 1.8;
+    letter-spacing: -0.01em;
     overflow-x: hidden;
     position: relative;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.5s var(--transition-smooth), color 0.5s var(--transition-smooth);
+}
+
+/* Custom Premium Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--accent-blue), var(--accent-purple));
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-blue);
 }
 /* Animated Background */
 body::before {
@@ -120,13 +133,14 @@ ul {
 }
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.5s ease-out;
-    /* Faster reveal */
+    transform: translateY(40px);
+    transition: var(--transition-smooth);
+    filter: blur(5px);
 }
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
 }
 /* Navigation */
 nav {
@@ -143,9 +157,9 @@ nav {
     z-index: 1000;
 }
 .logo {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 700;
-    letter-spacing: -0.5px;
+    letter-spacing: -1px;
 }
 .logo span {
     color: var(--accent-blue);
@@ -157,12 +171,14 @@ nav {
 }
 .nav-links a {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 500;
+    transition: var(--transition-smooth);
+    letter-spacing: 0.02em;
 }
 .nav-links a:hover {
     color: var(--text-primary);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 .nav-cta {
     padding: 0.6rem 1.5rem;
@@ -201,21 +217,32 @@ nav {
     position: relative;
     z-index: 1;
 }
-.hero-content h1 {
+.typing-text {
     font-size: 4rem;
     line-height: 1.1;
-    margin-bottom: 1rem;
-    background: linear-gradient(to right, #fff, #aaa);
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: fadeInUp 1s ease-out;
+    position: relative;
 }
-.typing-text {
-    font-size: 1.5rem;
+.typing-text::after {
+    content: '|';
+    position: absolute;
+    right: -15px;
     color: var(--accent-blue);
-    margin-bottom: 2.5rem;
-    font-family: 'Courier New', monospace;
-    min-height: 1.5em;
+    animation: blink 0.8s infinite;
+    -webkit-text-fill-color: var(--accent-blue);
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+.hero-tagline {
+    font-size: 1.3rem;
+    color: var(--accent-blue);
+    margin-bottom: 1rem;
+    font-weight: 500;
     animation: fadeInUp 1s ease-out 0.3s backwards;
 }
 .cta-group {
@@ -226,32 +253,34 @@ nav {
 }
 .btn {
     padding: 1rem 2.5rem;
-    border-radius: 50px;
+    border-radius: 12px; /* Slightly softer than pill */
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.95rem;
     cursor: pointer;
     border: none;
     position: relative;
     overflow: hidden;
     z-index: 1;
+    transition: var(--transition-bounce);
 }
 .btn-primary {
     background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
     color: white;
-    box-shadow: 0 10px 20px -5px rgba(0, 243, 255, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 209, 255, 0.2);
 }
 .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 30px -5px rgba(0, 243, 255, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 209, 255, 0.4);
 }
 .btn-secondary {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--glass-border);
     color: var(--text-primary);
+    backdrop-filter: blur(5px);
 }
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 /* Sections General */
 section {
@@ -378,13 +407,13 @@ footer::after {
     margin-bottom: 4rem;
 }
 .section-title {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 5vw, 3rem);
     margin-bottom: 1rem;
     display: inline-block;
 }
 .section-subtitle {
     color: var(--text-secondary);
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     max-width: 600px;
     margin: 0 auto;
 }
@@ -399,9 +428,16 @@ footer::after {
 .interest-card {
     background: var(--card-bg);
     border: 1px solid var(--glass-border);
-    padding: 2.5rem;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
+    padding: 3rem;
+    border-radius: 24px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: var(--transition-smooth);
+}
+.about-card:hover,
+.interest-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
 }
 .about-text p {
     color: var(--text-secondary);
@@ -453,17 +489,18 @@ footer::after {
     gap: 2rem;
 }
 .project-card {
-    background: var(--section-bg);
-    border-radius: 16px;
+    background: var(--card-bg);
+    border-radius: 24px;
     overflow: hidden;
-    transition: var(--transition);
+    transition: var(--transition-bounce);
     border: 1px solid var(--glass-border);
     position: relative;
-    group;
+    backdrop-filter: blur(10px);
 }
 .project-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--accent-purple);
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--accent-blue);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 .project-content {
     padding: 2rem;
@@ -499,22 +536,23 @@ footer::after {
     padding: 3rem 2rem;
     border-radius: 24px;
     text-align: center;
-    transition: var(--transition);
+    transition: var(--transition-bounce);
     position: relative;
+    backdrop-filter: blur(15px);
 }
 .pricing-card.featured {
-    background: linear-gradient(145deg, rgba(30, 30, 30, 0.8), rgba(20, 20, 20, 0.8));
+    background: linear-gradient(145deg, rgba(35, 35, 50, 0.4), rgba(15, 15, 25, 0.4));
     border-color: var(--accent-blue);
     transform: scale(1.05);
     z-index: 2;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 .pricing-card:hover {
-    transform: translateY(-10px) scale(1.02);
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--accent-blue);
 }
 .pricing-card.featured:hover {
-    transform: translateY(-10px) scale(1.08);
-    /* Maintain relative scale hover */
+    transform: translateY(-8px) scale(1.08);
 }
 .price-tag {
     font-size: 2.5rem;
@@ -541,6 +579,66 @@ footer::after {
 .features-list li i {
     color: var(--accent-blue);
 }
+/* Services Section */
+.services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+.service-card {
+    flex: 1 1 300px;
+    max-width: 400px;
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    text-align: center;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+}
+.service-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-blue);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+.service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+.service-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+.service-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    min-height: 4.5em;
+}
+.service-features {
+    text-align: left;
+}
+.service-features li {
+    margin-bottom: 0.8rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+.service-features li i {
+    color: var(--accent-blue);
+    font-size: 0.8rem;
+}
+
 /* Contact Section */
 .contact-actions {
     display: flex;
@@ -612,78 +710,37 @@ footer {
     transform: scale(1.05);
     box-shadow: 0 0 40px rgba(0, 243, 255, 0.4);
 }
-/* Responsive Design */
+/* Responsive Design - Universal Media Queries */
+@media (max-width: 1440px) {
+    section { max-width: 1200px; }
+}
+
+@media (max-width: 1200px) {
+    .about-grid { gap: 2rem; }
+    .hero-content h1 { font-size: clamp(3rem, 8vw, 4rem); }
+}
+
 @media (max-width: 1024px) {
-    section {
-        padding: 4rem 3%;
-    }
-    .hero-content h1 {
-        font-size: 3.5rem;
-    }
+    section { padding: 5rem 5%; }
+    .nav-links { gap: 1.5rem; }
+    .pricing-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 }
-@media (max-width: 900px) {
-    .pricing-card.featured {
-        transform: scale(1);
-    }
-    .about-grid {
-        grid-template-columns: 1fr;
-    }
-    .nav-links {
-        display: none;
-    }
-    /* In a real app, we'd add a JS toggle menu here */
-    nav {
-        justify-content: center;
-    }
-    .logo {
-        margin-bottom: 0.5rem;
-    }
-    nav {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
-    }
-    .nav-links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-        font-size: 0.9rem;
-    }
-    .nav-cta {
-        display: none;
-    }
+
+@media (max-width: 768px) {
+    nav { padding: 1rem 5%; }
+    .nav-links { display: none; } /* Simplified for senior minimalism on mobile */
+    .about-grid { grid-template-columns: 1fr; }
+    .hero-content h1 { font-size: 3rem; }
+    .typing-text { font-size: 2.5rem; }
+    .cta-group { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
+    .btn { width: 100%; text-align: center; }
+    .pricing-card.featured { transform: scale(1); }
+    .pricing-card.featured:hover { transform: translateY(-5px); }
 }
-@media (max-width: 600px) {
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    .typing-text {
-        font-size: 1.1rem;
-    }
-    .section-title {
-        font-size: 2rem;
-    }
-    .btn {
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
-    }
-    .pricing-grid {
-        gap: 1.5rem;
-    }
-    .pricing-card {
-        padding: 2rem 1.5rem;
-    }
-    .contact-actions {
-        flex-direction: column;
-        width: 100%;
-    }
-    .contact-btn {
-        width: 100%;
-        justify-content: center;
-    }
-    .about-card,
-    .interest-card {
-        padding: 1.5rem;
-    }
+
+@media (max-width: 480px) {
+    .section-title { font-size: 2rem; }
+    .hero-content h1 { font-size: 2.5rem; }
+    .service-card, .project-card { padding: 1.5rem; }
+    .logo { font-size: 1.5rem; }
 }
