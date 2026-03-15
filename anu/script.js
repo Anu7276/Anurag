@@ -1,27 +1,31 @@
 const typingText = document.querySelector('.typing-text');
-const roles = ["AI Student", "Web Developer", "Portfolio Designer"];
+const roles = ["AI Enthusiast & Software Developer", "Web Developer", "B.Tech Student"];
 let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
+
 function typeEffect() {
+    if (!typingText) return;
     const currentRole = roles[roleIndex];
+    
     if (isDeleting) {
         typingText.textContent = currentRole.substring(0, charIndex--);
     } else {
         typingText.textContent = currentRole.substring(0, charIndex++);
     }
-    if (!isDeleting && charIndex === currentRole.length) {
+
+    if (!isDeleting && charIndex === currentRole.length + 1) {
         isDeleting = true;
-        setTimeout(typeEffect, 1000); // Pause shorter at end
+        setTimeout(typeEffect, 2000); // Wait longer at the end
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         roleIndex = (roleIndex + 1) % roles.length;
-        setTimeout(typeEffect, 200);
+        setTimeout(typeEffect, 500);
     } else {
-        setTimeout(typeEffect, isDeleting ? 40 : 80); // Much faster typing
+        setTimeout(typeEffect, isDeleting ? 50 : 100);
     }
 }
-/* Particle Network Animation */
+
 function initParticles() {
     const canvas = document.getElementById('hero-canvas');
     if (!canvas) return;
